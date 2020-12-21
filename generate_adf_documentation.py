@@ -20,6 +20,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import pathlib
 import argparse
 import logging
 import os.path
@@ -46,6 +47,11 @@ def document_adf(args):
   args : object
     The parsed command line arguments. 
   """
+
+  if args.scrubprevious: 
+    [p.unlink() for p in pathlib.Path('.').rglob('*.py[co]')]
+    [p.rmdir() for p in pathlib.Path('.').rglob('__pycache__')]
+    [p.unlink() for p in pathlib.Path('.').rglob('*.md') if 'README.md' not in str(p)]
 
   if args.datasets:
     datasets_file = open(args.datasets_md_file_name, 'a')
@@ -149,6 +155,10 @@ if __name__ == "__main__":
     help='Sets the verbosity of the outoput set to INFO, WARNING or ERROR',
     dest='loglevel', 
     default='warning')
+
+  parser.add_argument('-s', '--scrubprevious',
+    help='Removes files created in previous run',
+    action='store_true')
 
   args = parser.parse_args()
 

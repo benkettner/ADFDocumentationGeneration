@@ -28,6 +28,7 @@ For this tool, several parameters can be passed, the parameters are detailled be
 |`--triggersfile`| | Filename of the markdown file for the triggers documentation | no | `triggers.md`|
 |`--combine`|`-c`| Combine individual documentation into one file | no | False|
 |`--outputfile`| | Filename of the markdown file for the combined documentation | no | `documentation.md`|
+|`--scrubprevious`|`-s` | Removes files created in previous run | no | False |
 |`--loglevel`|`-l`|Sets the verbosity of the outoput set to INFO, WARNING or ERROR | no | `warning`|
 
 
